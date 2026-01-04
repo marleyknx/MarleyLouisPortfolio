@@ -1,3 +1,12 @@
+img, section, div {
+  max-width: 100%;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .custom-navbar {
   background-color: #1a1a1a;
 }
@@ -605,6 +614,7 @@ button:hover {
 /* ============================
    CONTACT INFO
    ============================ */
+
 .contact-info {
   flex: 1;
   padding: 40px;
@@ -760,10 +770,6 @@ button:hover {
     padding: 12px 0;
   }
 }
-
-
-
-
 /* Bouton d'ouverture */
 .contact-btn {
   position: fixed;
@@ -831,18 +837,29 @@ button:hover {
 
 /* Responsive : réduire légèrement la taille sur mobile */
 @media (max-width: 768px) {
-  .social-fixed {
-    bottom: 90px;
+
+  /* Bouton Contact */
+  .contact-btn {
     right: 1rem;
+    bottom: 1rem;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  /* Icônes sociales fixes */
+  .social-fixed {
+    right: 1rem;
+    bottom: 70px; /* juste au-dessus du bouton */
     gap: 8px;
   }
 
   .social-fixed a {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     font-size: 1rem;
   }
 }
+
 
 
 /* Fond flouté */

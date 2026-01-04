@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#Banniere-Home">Marley Louis</a>
       <a class="navbar-brand" href="#Banniere-Home">
-      <img src="../MarleyLouisPortfolio/Image/Logo.png" alt="Logo Marley Louis" class="navbar-logo"> </a>
+      <img src="../MarleyLouisPortfolio/Image/logo.png" alt="Logo Marley Louis" class="navbar-logo"> </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -70,7 +70,7 @@
     
     <!-- IMAGE -->
     <div class="about-image">
-      <img src="..//MarleyLouisPortfolio/Image/Logo.png" alt="About Me">
+      <img src="../MarleyLouisPortfolio/Image/Logo.png" alt="About Me">
     </div>
 
     <!-- TEXTE + ICÔNES -->
@@ -354,20 +354,58 @@
   </div>
 </div>
 
-<!-- Formulaire classique sur la page -->
 <section id="contact-section" class="contact-container">
+
+  <!-- FORMULAIRE -->
   <div class="contact-form">
     <h2>Envoyer un message</h2>
-    <form id="page-form" action="https://formsubmit.co/marleylouis2003@gmail.com" method="POST">
-      <input type="text" name="prenom" placeholder="Prénom" required />
-      <input type="text" name="nom" placeholder="Nom" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="tel" name="telephone" placeholder="Téléphone (optionnel)" />
+
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+
+      <p hidden>
+        <label>Ne remplissez pas ceci: <input name="bot-field"></label>
+      </p>
+
+      <input type="text" name="prenom" placeholder="Prénom" required>
+      <input type="text" name="nom" placeholder="Nom" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="telephone" placeholder="Téléphone (optionnel)">
       <textarea name="message" placeholder="Détails du projet" required></textarea>
+
       <button type="submit">Envoyer</button>
-      <div class="confirmation" style="display:none;color:green;margin-top:10px;">Merci ! Votre message a bien été envoyé.</div>
     </form>
   </div>
+
+  <!-- INFOS CONTACT -->
+  <div class="contact-info">
+    <h2>Me contacter</h2>
+    <p>Réponse sous 48h.</p>
+
+    <ul>
+      <li>
+        <i class="fas fa-phone-alt"></i>
+        <a href="tel:+33780843703">+33 7 80 84 37 03</a>
+      </li>
+      <li>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:marleylouis24@gmail.com">marleylouis24@gmail.com</a>
+      </li>
+    </ul>
+
+    <div class="contact-social-container">
+      <div class="contact-social-icons">
+        <a href="https://www.linkedin.com/in/marley-louis/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/marleyknx" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://marleyknx.itch.io/" target="_blank"><i class="fab fa-itch-io"></i></a>
+      </div>
+
+      <a href="../Image/CV_Marley_Louis_2026.pdf" class="download-cv-btn" target="_blank">
+        Télécharger le CV
+      </a>
+    </div>
+  </div>
+
 </section>
 
 <!-- Script pour gérer le popup et confirmation -->
@@ -434,34 +472,6 @@ function handleFormSubmission(form) {
 handleFormSubmission(document.querySelector('#popup-form'));
 handleFormSubmission(document.querySelector('#page-form'));
 </script>
-
-
-  <!-- Infos contact -->
-  <div class="contact-info">
-  <h2>Me contacter</h2>
-  <p>Réponse sous 48h.</p>
-
-  <!-- Bloc infos (tel + mail) -->
-  <ul>
-    <li><i class="fas fa-phone-alt"></i>
-      <a href="+33780843703"> +33 7 80 84 37 03</a>
-    </li>
-    <li><i class="fas fa-envelope"></i> 
-      <a href="mailto:marleylouis24@gmail.com">marleylouis24@gmail.com</a>
-    </li>
-  </ul>
-
-  <!-- Bloc réseaux sociaux + CV centré -->
-  <div class="contact-social-container">
-    <div class="contact-social-icons">
-      <a href="https://www.linkedin.com/in/marley-louis/"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/marleyknx"><i class="fab fa-github"></i></a>
-      <a href="https://marleyknx.itch.io/" target="_blank"><i class="fab fa-itch-io"></i></a>
-    </div>
-    <a href="../MarleyLouisPortfolio/Image/CV_Marley_Louis_2026.pdf" class="download-cv-btn" target="_blank">Télécharger le CV</a>
-  </div>
-</div>
-</section>
 
 
 <!-- Barre de progression -->
