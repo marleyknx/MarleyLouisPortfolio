@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../MarleyLouisPortfolio/CSS/style.css">
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Responsive.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -69,7 +70,7 @@
     
     <!-- IMAGE -->
     <div class="about-image">
-      <img src="../MarleyLouisPortfolio/Image/Logo.png" alt="About Me">
+      <img src="..//MarleyLouisPortfolio/Image/Logo.png" alt="About Me">
     </div>
 
     <!-- TEXTE + ICÔNES -->
@@ -334,153 +335,105 @@
   <a href="https://marleyknx.itch.io/" target="_blank"><i class="fab fa-itch-io"></i></a>
 </div>
 
-<!-- Bouton fixe pour ouvrir le premier formulaire -->
-<a href="#contact-popup1" class="contact-btn">Contact</a>
+<!-- Bouton fixe pour ouvrir le popup -->
+<a href="#contact-popup" class="contact-btn">Contact</a>
 
-<!-- Popup modal 1 -->
-<div id="contact-popup1" class="modal" style="display:none;">
+<!-- Popup modal -->
+<div id="contact-popup" class="modal" style="display:none;">
   <div class="modal-content">
     <a href="#" class="close">&times;</a>
     <h2>Me contacter</h2>
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-      <input type="hidden" name="form-name" value="contact" />
-      <p hidden>
-        <label>Ne remplissez pas ceci: <input name="bot-field"></label>
-      </p>
+    <form class="contact-form" id="popup-form" action="https://formsubmit.co/marleylouis2003@gmail.com" method="POST">
       <input type="text" name="prenom" placeholder="Prénom" required />
       <input type="text" name="nom" placeholder="Nom" required />
       <input type="email" name="email" placeholder="Email" required />
       <textarea name="message" placeholder="Votre message" required></textarea>
       <button type="submit">Envoyer</button>
+      <div class="confirmation" style="display:none;color:green;margin-top:10px;">Merci ! Votre message a bien été envoyé.</div>
     </form>
   </div>
 </div>
 
-<!-- Exemple d’un deuxième popup -->
-<a href="#contact-popup2" class="contact-btn">Contact</a>
-
-<div id="contact-popup2" class="modal" style="display:none;">
-  <div class="modal-content">
-    <a href="#" class="close">&times;</a>
-    <h2>Me contacter </h2>
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-      <input type="hidden" name="form-name" value="contact" />
-      <p hidden>
-        <label>Ne remplissez pas ceci: <input name="bot-field"></label>
-      </p>
+<!-- Formulaire classique sur la page -->
+<section id="contact-section" class="contact-container">
+  <div class="contact-form">
+    <h2>Envoyer un message</h2>
+    <form id="page-form" action="https://formsubmit.co/marleylouis2003@gmail.com" method="POST">
       <input type="text" name="prenom" placeholder="Prénom" required />
       <input type="text" name="nom" placeholder="Nom" required />
       <input type="email" name="email" placeholder="Email" required />
-      <textarea name="message" placeholder="Votre message" required></textarea>
+      <input type="tel" name="telephone" placeholder="Téléphone (optionnel)" />
+      <textarea name="message" placeholder="Détails du projet" required></textarea>
       <button type="submit">Envoyer</button>
+      <div class="confirmation" style="display:none;color:green;margin-top:10px;">Merci ! Votre message a bien été envoyé.</div>
     </form>
   </div>
-</div>
+</section>
 
-<!-- Script pour gérer tous les popups et formulaires -->
+<!-- Script pour gérer le popup et confirmation -->
 <script>
-document.querySelectorAll('.contact-btn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    const popupId = btn.getAttribute('href');
-    const popup = document.querySelector(popupId);
-    if (popup) popup.style.display = 'flex';
-  });
+const btn = document.querySelector('.contact-btn');
+const popup = document.querySelector('#contact-popup');
+const closeBtn = document.querySelector('#contact-popup .close');
+
+// Ouvrir le popup
+btn.addEventListener('click', e => {
+  e.preventDefault();
+  popup.style.display = 'flex';
 });
 
-// Fermer les popups
-document.querySelectorAll('.modal .close').forEach(closeBtn => {
-  closeBtn.addEventListener('click', e => {
-    e.preventDefault();
-    closeBtn.closest('.modal').style.display = 'none';
-  });
+// Fermer le popup
+closeBtn.addEventListener('click', e => {
+  e.preventDefault();
+  popup.style.display = 'none';
 });
 
 // Fermer si clic en dehors du contenu
 window.addEventListener('click', e => {
-  if (e.target.classList.contains('modal')) {
-    e.target.style.display = 'none';
+  if (e.target === popup) {
+    popup.style.display = 'none';
   }
 });
 
-// Gestion de tous les formulaires
-document.querySelectorAll('form[name="contact"]').forEach(contactForm => {
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault(); // empêche le rechargement
-
-    const formData = new FormData(contactForm);
-
-    fetch('/', {
-      method: 'POST',
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
-    })
-    .then(() => {
-      alert('Merci ! Votre message a bien été envoyé.');
-      contactForm.reset();
-      // Ferme le popup correspondant
-      const popup = contactForm.closest('.modal');
-      if (popup) popup.style.display = 'none';
-    })
-    .catch(err => {
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
-      console.error(err);
-    });
-  });
-});
-</script>
-
-<section id="contact-section" class="contact-container">
-  
-  <!-- Formulaire classique sur la page -->
-<div class="contact-form">
-  <h2>Envoyer un message</h2>
-  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-    <!-- Champ caché Netlify Forms -->
-    <input type="hidden" name="form-name" value="contact" />
-
-    <!-- Champ anti-spam -->
-    <p hidden>
-      <label>Ne remplissez pas ceci: <input name="bot-field"></label>
-    </p>
-
-    <!-- Champs visibles -->
-    <input type="text" name="prenom" placeholder="Prénom" required />
-    <input type="text" name="nom" placeholder="Nom" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="tel" name="telephone" placeholder="Téléphone (optionnel)" />
-    <textarea name="message" placeholder="Détails du projet" required></textarea>
-
-    <button type="submit">Envoyer</button>
-  </form>
-</div>
-
-<!-- Script pour gérer l'envoi à Netlify et popup confirmation -->
-<script>
-document.querySelectorAll('form[name="contact"]').forEach(form => {
-  form.addEventListener('submit', function(e) {
-    e.preventDefault(); // empêche le rechargement
-
+// Fonction pour gérer l'envoi via Formsubmit + message confirmation
+function handleFormSubmission(form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const confirmation = form.querySelector('.confirmation');
     const formData = new FormData(form);
 
-    // Soumission à Netlify
-    fetch('/', {
+    fetch(form.action, {
       method: 'POST',
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
+      headers: { "Accept": "application/json" },
+      body: formData
     })
     .then(() => {
-      alert('Merci ! Votre message a bien été envoyé.'); // popup confirmation
-      form.reset(); // réinitialise le formulaire
+      confirmation.style.display = 'block';
+      form.reset();
+      setTimeout(() => {
+        confirmation.style.display = 'none';
+      }, 5000); // disparaît après 5 secondes
+
+      // Si c'est le popup, le fermer après un petit délai
+      if (form.id === 'popup-form') {
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 2000);
+      }
     })
     .catch(err => {
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      confirmation.style.color = 'red';
+      confirmation.textContent = "Erreur lors de l'envoi. Veuillez réessayer.";
+      confirmation.style.display = 'block';
       console.error(err);
     });
   });
-});
-</script>
+}
 
+// Appliquer la fonction aux deux formulaires
+handleFormSubmission(document.querySelector('#popup-form'));
+handleFormSubmission(document.querySelector('#page-form'));
+</script>
 
 
   <!-- Infos contact -->
@@ -543,7 +496,6 @@ document.querySelectorAll('form[name="contact"]').forEach(form => {
 
 
   </body>
-
 
 
 </html>
