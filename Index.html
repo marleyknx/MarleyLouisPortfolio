@@ -353,8 +353,8 @@
   </div>
 </div>
 <section id="contact-section" class="contact-container">
-  <!-- Formulaire -->
-  <div class="contact-form">
+<!-- Formulaire -->
+<div class="contact-form">
   <h2>Envoyer un message</h2>
   <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
     <!-- Champ caché pour Netlify Forms -->
@@ -375,6 +375,20 @@
     <button type="submit">Envoyer</button>
   </form>
 </div>
+
+<!-- Script pour afficher un popup après envoi -->
+<script>
+const form = document.querySelector('form[name="contact"]');
+
+form.addEventListener('submit', function(e) {
+  // Petit délai pour laisser Netlify traiter la soumission
+  setTimeout(() => {
+    alert('Merci ! Votre message a bien été envoyé.'); 
+    form.reset(); // Réinitialise le formulaire
+  }, 100);
+});
+</script>
+
 
 
   <!-- Infos contact -->
@@ -437,6 +451,7 @@
 
 
   </body>
+
 
 
 </html>
