@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#Banniere-Home">Marley Louis</a>
       <a class="navbar-brand" href="#Banniere-Home">
-      <img src="../MarleyLouisPortfolio/Image/logo.png" alt="Logo Marley Louis" class="navbar-logo"> </a>
+      <img src="../MarleyLouisPortfolio/Image/Logo.png" alt="Logo Marley Louis" class="navbar-logo"> </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -335,24 +335,44 @@
   <a href="https://marleyknx.itch.io/" target="_blank"><i class="fab fa-itch-io"></i></a>
 </div>
 
-<!-- Bouton fixe pour ouvrir le popup -->
-<a href="#contact-popup" class="contact-btn">Contact</a>
+<!-- =========================
+     BOUTON FIXE + POPUP
+========================= -->
 
-<!-- Popup modal -->
+<a href="#" class="contact-btn">Contact</a>
+
 <div id="contact-popup" class="modal" style="display:none;">
   <div class="modal-content">
     <a href="#" class="close">&times;</a>
     <h2>Me contacter</h2>
-    <form class="contact-form" id="popup-form" action="https://formsubmit.co/marleylouis2003@gmail.com" method="POST">
-      <input type="text" name="prenom" placeholder="Prénom" required />
-      <input type="text" name="nom" placeholder="Nom" required />
-      <input type="email" name="email" placeholder="Email" required />
+
+    <form
+      id="popup-form"
+      class="contact-form"
+      action="https://formsubmit.co/marleylouis2003@gmail.com"
+      method="POST"
+    >
+      <!-- FormSubmit options -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <input type="text" name="prenom" placeholder="Prénom" required>
+      <input type="text" name="nom" placeholder="Nom" required>
+      <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" placeholder="Votre message" required></textarea>
+
       <button type="submit">Envoyer</button>
-      <div class="confirmation" style="display:none;color:green;margin-top:10px;">Merci ! Votre message a bien été envoyé.</div>
+
+      <div class="confirmation" style="display:none;">
+        Merci ! Votre message a bien été envoyé.
+      </div>
     </form>
   </div>
 </div>
+
+<!-- =========================
+     FORMULAIRE BAS DE PAGE
+========================= -->
 
 <section id="contact-section" class="contact-container">
 
@@ -360,12 +380,14 @@
   <div class="contact-form">
     <h2>Envoyer un message</h2>
 
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="contact">
-
-      <p hidden>
-        <label>Ne remplissez pas ceci: <input name="bot-field"></label>
-      </p>
+    <form
+      id="page-form"
+      action="https://formsubmit.co/marleylouis2003@gmail.com"
+      method="POST"
+    >
+      <!-- FormSubmit options -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
 
       <input type="text" name="prenom" placeholder="Prénom" required>
       <input type="text" name="nom" placeholder="Nom" required>
@@ -374,6 +396,10 @@
       <textarea name="message" placeholder="Détails du projet" required></textarea>
 
       <button type="submit">Envoyer</button>
+
+      <div class="confirmation" style="display:none;">
+        Merci ! Votre message a bien été envoyé.
+      </div>
     </form>
   </div>
 
@@ -408,69 +434,72 @@
 
 </section>
 
-<!-- Script pour gérer le popup et confirmation -->
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
-const btn = document.querySelector('.contact-btn');
-const popup = document.querySelector('#contact-popup');
+const popup = document.getElementById('contact-popup');
+const openBtn = document.querySelector('.contact-btn');
 const closeBtn = document.querySelector('#contact-popup .close');
 
-// Ouvrir le popup
-btn.addEventListener('click', e => {
+// Ouvrir popup
+openBtn.addEventListener('click', e => {
   e.preventDefault();
   popup.style.display = 'flex';
 });
 
-// Fermer le popup
+// Fermer popup
 closeBtn.addEventListener('click', e => {
   e.preventDefault();
   popup.style.display = 'none';
 });
 
-// Fermer si clic en dehors du contenu
+// Fermer clic extérieur
 window.addEventListener('click', e => {
   if (e.target === popup) {
     popup.style.display = 'none';
   }
 });
 
-// Fonction pour gérer l'envoi via Formsubmit + message confirmation
-function handleFormSubmission(form) {
+// Gestion FormSubmit (popup + page)
+function handleForm(form) {
+  if (!form) return;
+
   form.addEventListener('submit', e => {
     e.preventDefault();
+
     const confirmation = form.querySelector('.confirmation');
-    const formData = new FormData(form);
+    const data = new FormData(form);
 
     fetch(form.action, {
       method: 'POST',
-      headers: { "Accept": "application/json" },
-      body: formData
+      body: data,
+      headers: { 'Accept': 'application/json' }
     })
     .then(() => {
-      confirmation.style.display = 'block';
       form.reset();
+      confirmation.style.display = 'block';
+
       setTimeout(() => {
         confirmation.style.display = 'none';
-      }, 5000); // disparaît après 5 secondes
+      }, 5000);
 
-      // Si c'est le popup, le fermer après un petit délai
       if (form.id === 'popup-form') {
         setTimeout(() => {
           popup.style.display = 'none';
         }, 2000);
       }
     })
-    .catch(err => {
-      confirmation.style.color = 'red';
-      confirmation.textContent = "Erreur lors de l'envoi. Veuillez réessayer.";
+    .catch(() => {
+      confirmation.textContent = "Erreur lors de l’envoi.";
       confirmation.style.display = 'block';
-      console.error(err);
     });
   });
 }
 
-// Appliquer la fonction aux deux formulaires
-handleFormSubmission(document.querySelector('#popup-form'));
-handleFormSubmission(document.querySelector('#page-form'));
+handleForm(document.getElementById('popup-form'));
+handleForm(document.getElementById('page-form'));
 </script>
 
 
