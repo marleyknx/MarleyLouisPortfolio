@@ -372,32 +372,31 @@
   </form>
 </div>
 
-<!-- Script popup corrigé -->
 <script>
 const form = document.querySelector('form[name="contact"]');
 
 form.addEventListener('submit', function(e) {
-  e.preventDefault(); // Empêche le rechargement instantané de la page
+  e.preventDefault(); // empêche le rechargement de la page
 
-  // Crée le popup
-  alert('Merci ! Votre message a bien été envoyé.');
-
-  // Réinitialise le formulaire
-  form.reset();
-
-  // Soumission "manuelle" à Netlify
   const formData = new FormData(form);
+
+  // Soumission à Netlify
   fetch('/', {
     method: 'POST',
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(formData).toString()
-  }).then(() => {
-    console.log('Formulaire envoyé à Netlify');
-  }).catch(err => {
-    console.error('Erreur:', err);
+  })
+  .then(() => {
+    alert('Merci ! Votre message a bien été envoyé.'); // popup après soumission
+    form.reset(); // réinitialise le formulaire
+  })
+  .catch(err => {
+    alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+    console.error(err);
   });
 });
 </script>
+
 
   <!-- Infos contact -->
   <div class="contact-info">
@@ -463,4 +462,5 @@ form.addEventListener('submit', function(e) {
 
 
 </html>
+
 
