@@ -1,0 +1,978 @@
+.custom-navbar {
+  background-color: #1a1a1a;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #cba135 !important;
+}
+
+
+.navbar-logo {
+  height: 40px; /* adapte selon la taille souhaitée */
+  width: auto;
+  border-radius: 5px; /* optionnel, arrondi du logo */
+}
+
+/* Bannière simple avec image de fond responsive */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* prend toute la hauteur de l'écran */
+  background-image: url('../Gifpetit/Banner.webp'); /* remplace par ton image */
+  background-size: cover;      /* l'image couvre toute la section */
+  background-position: center; /* centre l'image */
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white; /* texte blanc, modifiable si besoin */
+  padding: 0 20px;
+}
+
+/* Contenu de la bannière */
+.banner-content {
+  
+  position: relative;
+  z-index: 1;
+}
+
+.banner-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.banner-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Responsive pour tablettes et mobiles */
+@media (max-width: 768px) {
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+  .banner-content h2 {
+    font-size: 1.5rem;
+  }
+  .banner-content p {
+    font-size: 1rem;
+  }
+}
+
+
+/* ============================
+   SECTION PROFIL
+   ============================ */
+
+.about-section {
+  background-color: #1a1a1a; /* ou la couleur que tu veux */
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row; /* photo à gauche, texte à droite */
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 3rem 5%; /* espace en haut et en bas */
+}
+
+/* IMAGE */
+.about-image {
+  flex-shrink: 0; /* ne rétrécit pas */
+}
+
+.about-image img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* TEXTE + ICÔNES */
+.about-text {
+  flex: 1; /* prend tout l'espace disponible */
+  display: flex;
+  flex-direction: column; /* texte en haut, icônes en bas */
+  justify-content: flex-start;
+}
+
+/* TITRE ET TEXTE */
+.about-text h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #cba135;
+}
+
+.about-text p {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.6; /* pour plus de lisibilité */
+}
+
+/* ICÔNES */
+.about-social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-end; /* icônes alignées à droite */
+}
+
+.about-social-icons a {
+  font-size: 2.5rem;
+  color: #872585;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.about-social-icons a:hover {
+  color: #e3d6c3;
+  transform: scale(1.1);
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column; /* empile image et texte verticalement */
+    text-align: center;
+    align-items: center;
+    padding: 2rem 5%;
+  }
+
+  .about-image img {
+    max-width: 220px;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text {
+    margin-top: 0;
+  }
+
+  .about-social-icons {
+    justify-content: center; /* icônes centrées sur mobile */
+  }
+}
+
+
+
+/* Section Compétences */
+.service-card {
+  position: relative;
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card:hover {
+  background-color: #1a1a1a;
+  color: white;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+}
+
+.card-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px) brightness(0.8);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.service-icon {
+  position: absolute;
+  top: 100px; /* moitié de la hauteur de la carte image */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: white;
+  z-index: 10;
+  filter: none;
+  transition: color 0.3s ease;
+  pointer-events: none;
+}
+
+.service-card:hover .service-icon {
+  color: #cba135;
+}
+
+.card-text {
+  padding: 1rem;
+  flex-grow: 1;
+  color: #222;
+  transition: color 0.3s ease;
+  text-align: center;
+}
+
+.service-card:hover .card-text {
+  color: white;
+}
+
+.card-text h5 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.card-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+/* General*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: #f5f5f5;
+}
+
+/* Police pour H1 - Helvetica Gras */
+h1, h2 {
+font-family: 'Zen Dots', cursive;
+}
+
+h1 {
+  font-family: 'Zen Dots', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+h2 {
+  font-family: 'Zen Dots', sans-serif  !important;
+  font-weight: 400 !important;
+}
+
+
+/* Projets */
+/* ============================
+   SECTION PROJETS
+   ============================ */
+
+.experience-section {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #e3d6c3;
+}
+
+.experience-section h2 {
+  font-size: 2.5rem;
+  color: #5d3953;
+  margin-bottom: 40px;
+}
+
+/* ============================
+   GALERIE
+   ============================ */
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 100%;
+  padding: 0 1rem;
+  overflow-x: auto;
+}
+
+/* ============================
+   CARTE PROJET (DESKTOP)
+   ============================ */
+
+.card {
+  position: relative;
+  width: 3rem;
+  height: 25rem;
+  border-radius: 10rem;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  flex: 0.15;
+  min-width: 3rem;
+  background: #000;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  transition: filter 0.3s ease;
+}
+
+/* ============================
+   HOVER DESKTOP (ACCORDÉON)
+   ============================ */
+
+.card:hover {
+  flex: 1;
+  border-radius: 1rem;
+}
+
+.card:hover img {
+  filter: brightness(0.4);
+}
+
+/* ============================
+   TEXTE (FIGCAPTION)
+   ============================ */
+
+.card figcaption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  text-align: left;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.card:hover figcaption {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Titres */
+.card figcaption h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.card figcaption h3,
+.card figcaption h5 {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #e3d6c3;
+}
+
+/* Texte */
+.card figcaption p,
+.card figcaption li {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* ============================
+   BOUTONS
+   ============================ */
+
+.game-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #cba135;
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.game-btn:hover {
+  background-color: #872585;
+  color: #fff;
+}
+
+.play-btn {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: #5d3953;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.play-btn:hover {
+  background-color: #cba135;
+  color: #000;
+}
+
+/* ============================
+   MOBILE FIX
+   ============================ */
+
+@media (max-width: 768px) {
+
+  .gallery {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;              /* 🔥 hauteur dynamique */
+    min-height: 300px;
+    border-radius: 1.5rem;
+    flex: none;
+  }
+
+  .card img {
+    height: 200px;
+  }
+
+  .card figcaption {
+    position: static;          /* 🔥 scroll naturel */
+    opacity: 1;
+    visibility: visible;
+    background: rgba(0, 0, 0, 0.85);
+    max-height: none;
+    overflow: visible;
+  }
+
+  .card:hover {
+    flex: none;
+  }
+
+  .game-btn,
+  .play-btn {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+}
+
+
+/* Section contact*/
+
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 50px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================
+   EXPÉRIENCES PROFESSIONNELLES
+   ============================ */
+
+.pro-experience-section {
+  background-color: #1a1a1a;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.pro-experience-section h2 {
+  color: #cba135;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+}
+
+.pro-experience-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.pro-experience-card {
+  background: linear-gradient(135deg, #222, #2c2c2c);
+  border-radius: 16px;
+  padding: 25px;
+  color: white;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pro-experience-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.pro-experience-card h3 {
+  color: #e3d6c3;
+  margin-bottom: 5px;
+}
+
+.pro-experience-card span {
+  display: block;
+  font-size: 0.9rem;
+  color: #cba135;
+  margin-bottom: 15px;
+}
+
+.pro-experience-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pro-experience-card ul li {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.pro-experience-card ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #872585;
+}
+
+
+/* FORMULAIRE */
+.contact-form {
+  flex: 2;
+  background: #fff;
+  color: #000;
+  padding: 40px;
+}
+
+.contact-form h2 {
+  color: #872585;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input,
+textarea {
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  background: #f5f5f5;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  background: #e9e9e9;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  height: 150px;
+}
+
+button {
+  background: #5d3953 !important;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+button:hover {
+  background: #872585 !important;
+  color:white !important;
+}
+
+/* ============================
+   CONTACT INFO
+   ============================ */
+.contact-info {
+  flex: 1;
+  padding: 40px;
+  background-color:#1a1a1a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* réduit l'espacement global */
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.contact-info p {
+  margin-bottom: 4px; /* réduit l'espace sous "Réponse sous 48h" */
+}
+
+/* Bloc infos (téléphone + mail) */
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* moins d'espace entre téléphone et mail */
+  text-align: left; /* alignement à gauche */
+}
+
+.contact-info li {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* espace entre icône et texte */
+}
+
+.contact-info i {
+  padding: 8px;
+  font-size: 1rem;
+  background-color: #872585;
+  border-radius: 50%;
+}
+
+/* Liens */
+.contact-info a {
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color:#cba135;
+}
+
+/* ============================
+   RÉSEAUX SOCIAUX + BOUTON CV
+   ============================ */
+.contact-social-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* espace entre mail et icônes + bouton */
+  margin-top: 10px;
+}
+
+/* Icônes sociales */
+.contact-social-container .contact-social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-social-container .contact-social-icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;       /* cercle énorme */
+  height: 100px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-social-container .contact-social-icons a i {
+  font-size: 2rem !important;  /* grosse icône */
+  color: #fff;
+  line-height: 1;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-social-container .contact-social-icons a:hover {
+  transform: scale(1.2);
+}
+
+.contact-social-container .contact-social-icons a:hover i {
+  color: black;
+}
+
+/* Bouton Télécharger le CV */
+.download-cv-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: #cba135;
+  color: #000 !important;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.download-cv-btn:hover {
+  background-color: #872585;
+  color: #fff !important;
+  transform: scale(1.05);
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 768px) {
+  .contact-info {
+    padding: 30px 20px;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .contact-info ul {
+    text-align: center;
+    gap: 3px;
+  }
+
+  .contact-social-container {
+    gap: 10px;
+  }
+
+  .contact-social-container .contact-social-icons {
+    gap: 12px;
+  }
+
+  .contact-social-container .contact-social-icons a {
+    width: 70px;
+    height: 70px;
+  }
+
+  .contact-social-container .contact-social-icons a i {
+    font-size: 3rem !important;
+  }
+
+  .download-cv-btn {
+    width: 100%;
+    padding: 12px 0;
+  }
+}
+
+
+
+
+/* Bouton d'ouverture */
+.contact-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+  padding: 1rem 2rem;
+  background: #5d3953;
+  color: white;
+  padding: 15px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: 0.3s;
+}
+
+.contact-btn:hover {
+  background: #872585;
+  color:white;
+}
+
+
+/* Conteneur des icônes fixes, alignées verticalement au-dessus du bouton Contact */
+.social-fixed {
+  position: fixed;
+  bottom: 90px;   /* distance entre le bas et la première icône */
+  right: 2rem;    /* aligné avec le bouton Contact */
+  display: flex;
+  flex-direction: column; /* icônes empilées verticalement */
+  gap: 10px;      /* espace entre chaque icône */
+  z-index: 1000;  /* devant les autres éléments */
+}
+
+/* Style général des icônes */
+.social-fixed a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #5d3953;
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  z-index: 1000;
+  transition: 0.3s;
+  font-size: 1.2rem;
+}
+
+.social-fixed a:hover {
+  background-color: #872585;
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* Pour l’icône Itch.io en image */
+.social-fixed a img {
+  width: 60%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive : réduire légèrement la taille sur mobile */
+@media (max-width: 768px) {
+  .social-fixed {
+    bottom: 90px;
+    right: 1rem;
+    gap: 8px;
+  }
+
+  .social-fixed a {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
+
+/* Fond flouté */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(3px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 100;
+}
+
+/* Activation du modal */
+.modal:target {
+  display: flex;
+}
+
+/* Contenu du popup */
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  animation: popup 0.4s ease-in-out;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bouton de fermeture */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  text-decoration: none;
+  font-size: 2rem;
+  color: #999;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* Formulaire */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  background-color: #a25555;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #fff;
+  color: #a25555;
+  border: 2px solid #a25555;
+}
+
+/* Barre de progression en bas */
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 0;
+  background: linear-gradient(to right,#1a1a1a, #5d3953, #872585, #cba135, #e3d6c3);
+  z-index: 1002;
+  transition: width 0.3s ease;
+  border-radius: 0;
+}
+
+/* Footer caché juste au-dessus de la barre */
+footer {
+  position: fixed;
+  bottom: 6px; /* juste au-dessus de la barre */
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to right, #1a1a1a, #5d3953);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.5s ease;
+  z-index: 1001;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+}
+
+/* Footer visible */
+footer.visible {
+  transform: translateY(0);
+}
