@@ -854,9 +854,9 @@ button:hover {
   height: 100%;
   background-color: rgba(0,0,0,0.6);
   backdrop-filter: blur(3px);
-  display: none;
-  align-items: center;
-  justify-content: center;
+  display: flex;           /* active Flexbox */
+  align-items: center;     /* centre verticalement */
+  justify-content: center; /* centre horizontalement */
   padding: 2rem;
   z-index: 100;
 }
@@ -975,4 +975,5 @@ footer {
 /* Footer visible */
 footer.visible {
   transform: translateY(0);
+
 }
